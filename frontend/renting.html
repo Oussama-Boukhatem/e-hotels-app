@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Renting</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Create Renting</h1>
+    <a href="index.html">Back</a>
+
+    <form id="rentingForm">
+      <label>Start Date:</label>
+      <input type="date" id="rentingStartDate" required />
+
+      <label>End Date:</label>
+      <input type="date" id="rentingEndDate" required />
+
+      <label>Customer ID:</label>
+      <input type="number" id="rentingCustomerId" required />
+
+      <label>Room ID:</label>
+      <input type="number" id="rentingRoomId" required />
+
+      <label>Employee ID:</label>
+      <input type="number" id="employeeId" required />
+
+      <label>Booking ID (optional):</label>
+      <input type="number" id="bookingId" />
+
+      <button type="submit">Create Renting</button>
+    </form>
+
+    <div id="rentingResult"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

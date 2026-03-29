@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Booking</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Create Booking</h1>
+    <a href="index.html">Back</a>
+
+    <form id="bookingForm">
+      <label>Start Date:</label>
+      <input type="date" id="bookingStartDate" required />
+
+      <label>End Date:</label>
+      <input type="date" id="bookingEndDate" required />
+
+      <label>Customer ID:</label>
+      <input type="number" id="customerId" required />
+
+      <label>Room ID:</label>
+      <input type="number" id="roomId" required />
+
+      <button type="submit">Create Booking</button>
+    </form>
+
+    <div id="bookingResult"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

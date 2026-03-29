@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Search Rooms</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Search Available Rooms</h1>
+    <a href="index.html">Back</a>
+
+    <form id="roomSearchForm">
+      <label>Area:</label>
+      <input type="text" id="area" required />
+
+      <label>Start Date:</label>
+      <input type="date" id="startDate" required />
+
+      <label>End Date:</label>
+      <input type="date" id="endDate" required />
+
+      <label>Capacity:</label>
+      <select id="capacity" required>
+        <option value="Single">Single</option>
+        <option value="Double">Double</option>
+        <option value="Triple">Triple</option>
+        <option value="Suite">Suite</option>
+      </select>
+
+      <button type="submit">Search</button>
+    </form>
+
+    <h2>Results</h2>
+    <div id="roomResults"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
