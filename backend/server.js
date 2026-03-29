@@ -1,11 +1,30 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const pool = require("./db");
 require("dotenv").config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.get("/views/available-rooms-per-area", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM AvailableRoomsPerArea");
+    res.json({ success: true, data: result.rows });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.get("/views/hotel-aggregated-capacity", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM HotelAggregatedCapacity");
+    res.json({ success: true, data: result.rows });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
 
 app.get("/", (req, res) => {
   res.send("e-Hotels backend running");
@@ -139,6 +158,8 @@ app.post("/rentings", async (req, res) => {
     });
   }
 });
+
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
