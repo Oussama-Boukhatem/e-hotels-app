@@ -41,36 +41,90 @@ app.get("/test-db", async (req, res) => {
 
 app.get("/rooms/available", async (req, res) => {
   try {
-    const { area, startDate, endDate, capacity } = req.query;
+    const {
+      startDate,
+      endDate,
+      capacity,
+      area,
+      chainId,
+      categoryStars,
+      minRooms,
+      maxPrice,
+    } = req.query;
 
-    if (!area || !startDate || !endDate || !capacity) {
+    if (!startDate || !endDate) {
       return res.status(400).json({
         success: false,
-        error:
-          "Missing required query parameters: area, startDate, endDate, capacity",
+        error: "startDate and endDate are required",
       });
     }
 
-    const query = `
-      SELECT r.RoomID, r.Price, r.Capacity, r.ViewType, h.HotelAddress, h.CategoryStars
+    let query = `
+      SELECT
+        r.RoomID,
+        r.Price,
+        r.Capacity,
+        r.ViewType,
+        h.HotelID,
+        h.HotelAddress,
+        h.CategoryStars,
+        h.NumberOfRooms,
+        h.ChainID
       FROM Room r
       JOIN Hotel h ON r.HotelID = h.HotelID
-      WHERE h.HotelAddress ILIKE $1
-        AND r.Capacity = $2
-        AND r.RoomID NOT IN (
-            SELECT b.RoomID
-            FROM Booking b
-            WHERE NOT (b.EndDate <= $3 OR b.StartDate >= $4)
-        )
-        AND r.RoomID NOT IN (
-            SELECT rt.RoomID
-            FROM Renting rt
-            WHERE NOT (rt.EndDate <= $3 OR rt.StartDate >= $4)
-        )
-      ORDER BY r.RoomID;
+      WHERE r.RoomID NOT IN (
+        SELECT b.RoomID
+        FROM Booking b
+        WHERE NOT (b.EndDate <= $1 OR b.StartDate >= $2)
+      )
+      AND r.RoomID NOT IN (
+        SELECT rt.RoomID
+        FROM Renting rt
+        WHERE NOT (rt.EndDate <= $1 OR rt.StartDate >= $2)
+      )
     `;
 
-    const values = [`%${area}%`, capacity, startDate, endDate];
+    const values = [startDate, endDate];
+    let paramIndex = 3;
+
+    if (capacity) {
+      query += ` AND r.Capacity = $${paramIndex}`;
+      values.push(capacity);
+      paramIndex++;
+    }
+
+    if (area) {
+      query += ` AND h.HotelAddress ILIKE $${paramIndex}`;
+      values.push(`%${area}%`);
+      paramIndex++;
+    }
+
+    if (chainId) {
+      query += ` AND h.ChainID = $${paramIndex}`;
+      values.push(Number(chainId));
+      paramIndex++;
+    }
+
+    if (categoryStars) {
+      query += ` AND h.CategoryStars = $${paramIndex}`;
+      values.push(Number(categoryStars));
+      paramIndex++;
+    }
+
+    if (minRooms) {
+      query += ` AND h.NumberOfRooms >= $${paramIndex}`;
+      values.push(Number(minRooms));
+      paramIndex++;
+    }
+
+    if (maxPrice) {
+      query += ` AND r.Price <= $${paramIndex}`;
+      values.push(Number(maxPrice));
+      paramIndex++;
+    }
+
+    query += ` ORDER BY r.RoomID`;
+
     const result = await pool.query(query, values);
 
     res.json({

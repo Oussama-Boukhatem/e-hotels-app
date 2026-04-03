@@ -1,36 +1,51 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
     <title>Search Rooms</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <h1>Search Available Rooms</h1>
-    <a href="index.html">Back</a>
+
+    <a href="index.html">Home</a>
 
     <form id="roomSearchForm">
-      <label>Area:</label>
-      <input type="text" id="area" required />
-
-      <label>Start Date:</label>
+      <label>Start Date</label>
       <input type="date" id="startDate" required />
 
-      <label>End Date:</label>
+      <label>End Date</label>
       <input type="date" id="endDate" required />
 
-      <label>Capacity:</label>
-      <select id="capacity" required>
+      <label>Capacity</label>
+      <select id="capacity">
+        <option value="">Any</option>
         <option value="Single">Single</option>
         <option value="Double">Double</option>
         <option value="Triple">Triple</option>
         <option value="Suite">Suite</option>
       </select>
 
-      <button type="submit">Search</button>
+      <label>Area</label>
+      <input type="text" id="area" />
+
+      <label>Hotel Chain ID</label>
+      <input type="number" id="chainId" />
+
+      <label>Hotel Category Stars</label>
+      <input type="number" id="categoryStars" />
+
+      <label>Minimum Rooms In Hotel</label>
+      <input type="number" id="minRooms" />
+
+      <label>Maximum Room Price</label>
+      <input type="number" id="maxPrice" />
+
+      <button type="submit">Search Rooms</button>
     </form>
 
     <h2>Results</h2>
+
     <div id="roomResults"></div>
 
     <script src="app.js"></script>

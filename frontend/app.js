@@ -1,46 +1,90 @@
 const API_BASE = "http://localhost:3000";
 
 const roomSearchForm = document.getElementById("roomSearchForm");
-if (roomSearchForm) {
-  roomSearchForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
 
-    const area = document.getElementById("area").value;
+if (roomSearchForm) {
+  async function searchRooms() {
     const startDate = document.getElementById("startDate").value;
     const endDate = document.getElementById("endDate").value;
-    const capacity = document.getElementById("capacity").value;
 
-    const response = await fetch(
-      `${API_BASE}/rooms/available?area=${encodeURIComponent(area)}&startDate=${startDate}&endDate=${endDate}&capacity=${capacity}`,
-    );
+    if (!startDate || !endDate) return;
+
+    const capacity = document.getElementById("capacity").value;
+    const area = document.getElementById("area").value;
+    const chainId = document.getElementById("chainId").value;
+    const categoryStars = document.getElementById("categoryStars").value;
+    const minRooms = document.getElementById("minRooms").value;
+    const maxPrice = document.getElementById("maxPrice").value;
+
+    const params = new URLSearchParams({
+      startDate,
+      endDate,
+    });
+
+    if (capacity) params.append("capacity", capacity);
+    if (area) params.append("area", area);
+    if (chainId) params.append("chainId", chainId);
+    if (categoryStars) params.append("categoryStars", categoryStars);
+    if (minRooms) params.append("minRooms", minRooms);
+    if (maxPrice) params.append("maxPrice", maxPrice);
+
+    const response = await fetch(`/rooms/available?${params.toString()}`);
     const data = await response.json();
 
     const resultsDiv = document.getElementById("roomResults");
+
     if (!data.success) {
       resultsDiv.innerHTML = `<p>${data.error}</p>`;
       return;
     }
 
     if (data.rooms.length === 0) {
-      resultsDiv.innerHTML = "<p>No rooms found.</p>";
+      resultsDiv.innerHTML = "<p>No rooms found</p>";
       return;
     }
 
-    let html =
-      '<table border="1"><tr><th>Room ID</th><th>Price</th><th>Capacity</th><th>View</th><th>Hotel</th><th>Stars</th></tr>';
+    let html = `<table border="1">
+<tr>
+<th>RoomID</th>
+<th>Price</th>
+<th>Capacity</th>
+<th>View</th>
+<th>Hotel</th>
+<th>Stars</th>
+<th>Action</th>
+</tr>`;
+
     data.rooms.forEach((room) => {
       html += `<tr>
-        <td>${room.roomid}</td>
-        <td>${room.price}</td>
-        <td>${room.capacity}</td>
-        <td>${room.viewtype}</td>
-        <td>${room.hoteladdress}</td>
-        <td>${room.categorystars}</td>
-      </tr>`;
+<td>${room.roomid}</td>
+<td>${room.price}</td>
+<td>${room.capacity}</td>
+<td>${room.viewtype}</td>
+<td>${room.hoteladdress}</td>
+<td>${room.categorystars}</td>
+<td>
+<button onclick="bookRoom(${room.roomid})">
+Book
+</button>
+</td>
+</tr>`;
     });
-    html += "</table>";
+
+    html += `</table>`;
 
     resultsDiv.innerHTML = html;
+  }
+
+  const inputs = roomSearchForm.querySelectorAll("input, select");
+
+  inputs.forEach((input) => {
+    input.addEventListener("change", searchRooms);
+    input.addEventListener("input", searchRooms);
+  });
+
+  roomSearchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    searchRooms();
   });
 }
 
@@ -132,4 +176,35 @@ if (loadHotelCapacity) {
 
     document.getElementById("hotelCapacityView").innerHTML = html;
   });
+}
+
+async function bookRoom(roomId) {
+  const startDate = document.getElementById("startDate").value;
+  const endDate = document.getElementById("endDate").value;
+
+  const customerId = prompt("Enter your Customer ID");
+
+  if (!customerId) return;
+
+  const response = await fetch("/bookings", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify({
+      roomId,
+      customerId,
+      startDate,
+      endDate,
+    }),
+  });
+
+  const data = await response.json();
+
+  if (data.success) {
+    alert("Booking created successfully");
+  } else {
+    alert(data.error);
+  }
 }
