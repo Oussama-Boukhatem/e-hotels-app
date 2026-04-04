@@ -1,34 +1,56 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Create Renting</title>
+    <title>Employee Renting</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Create Renting</h1>
-    <a href="index.html">Back</a>
+    <h1>Employee Renting Page</h1>
 
-    <form id="rentingForm">
-      <label>Start Date:</label>
-      <input type="date" id="rentingStartDate" required />
+    <a href="index.html">Home</a>
 
-      <label>End Date:</label>
-      <input type="date" id="rentingEndDate" required />
+    <h2>Convert Booking to Renting</h2>
 
-      <label>Customer ID:</label>
-      <input type="number" id="rentingCustomerId" required />
+    <button id="loadBookingsBtn">Load Bookings</button>
+    <div id="bookingList"></div>
 
-      <label>Room ID:</label>
-      <input type="number" id="rentingRoomId" required />
+    <form id="convertBookingForm">
+      <label>Booking ID</label>
+      <input type="number" id="convertBookingId" required />
 
-      <label>Employee ID:</label>
-      <input type="number" id="employeeId" required />
+      <label>Employee ID</label>
+      <input type="number" id="convertEmployeeId" required />
 
-      <label>Booking ID (optional):</label>
-      <input type="number" id="bookingId" />
+      <label>Payment Amount</label>
+      <input type="number" id="convertPaymentAmount" step="0.01" />
 
-      <button type="submit">Create Renting</button>
+      <button type="submit">Convert to Renting</button>
+    </form>
+
+    <hr />
+
+    <h2>Direct Renting</h2>
+
+    <form id="directRentingForm">
+      <label>Start Date</label>
+      <input type="date" id="directStartDate" required />
+
+      <label>End Date</label>
+      <input type="date" id="directEndDate" required />
+
+      <label>Customer ID</label>
+      <input type="number" id="directCustomerId" required />
+
+      <label>Room ID</label>
+      <input type="number" id="directRoomId" required />
+
+      <label>Employee ID</label>
+      <input type="number" id="directEmployeeId" required />
+
+      <label>Payment Amount</label>
+      <input type="number" id="directPaymentAmount" step="0.01" />
+
+      <button type="submit">Create Direct Renting</button>
     </form>
 
     <div id="rentingResult"></div>

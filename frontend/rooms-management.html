@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Rooms</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Room Management</h1>
+
+    <a href="index.html">Home</a>
+
+    <h2>Add Room</h2>
+
+    <form id="addRoomForm">
+      <input
+        type="number"
+        id="roomPrice"
+        placeholder="Price"
+        step="0.01"
+        required
+      />
+
+      <select id="roomCapacity" required>
+        <option value="Single">Single</option>
+        <option value="Double">Double</option>
+        <option value="Triple">Triple</option>
+        <option value="Suite">Suite</option>
+      </select>
+
+      <select id="roomViewType" required>
+        <option value="Sea">Sea</option>
+        <option value="Mountain">Mountain</option>
+        <option value="None">None</option>
+      </select>
+
+      <select id="roomExtendable" required>
+        <option value="true">Extendable</option>
+        <option value="false">Not Extendable</option>
+      </select>
+
+      <input
+        type="text"
+        id="roomProblemDamageNotes"
+        placeholder="Problem/Damage Notes"
+      />
+      <input type="number" id="roomHotelId" placeholder="Hotel ID" required />
+
+      <button type="submit">Add Room</button>
+    </form>
+
+    <h2>Rooms</h2>
+
+    <button id="loadRoomsBtn">Load Rooms</button>
+
+    <div id="roomManagementTable"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

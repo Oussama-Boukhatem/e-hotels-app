@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Customers</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1>Customer Management</h1>
+
+    <a href="index.html">Home</a>
+
+    <h2>Add Customer</h2>
+
+    <form id="addCustomerForm">
+      <input type="text" id="customerName" placeholder="Full Name" required />
+
+      <input type="text" id="customerAddress" placeholder="Address" required />
+
+      <select id="customerIdType">
+        <option value="SIN">SIN</option>
+        <option value="Passport">Passport</option>
+        <option value="DrivingLicence">DrivingLicence</option>
+        <option value="SSN">SSN</option>
+      </select>
+
+      <input
+        type="text"
+        id="customerIdNumber"
+        placeholder="ID Number"
+        required
+      />
+
+      <button type="submit">Add Customer</button>
+    </form>
+
+    <h2>Customers</h2>
+
+    <button id="loadCustomersBtn">Load Customers</button>
+
+    <div id="customerTable"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

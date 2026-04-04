@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hotels</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Hotel Management</h1>
+
+    <a href="index.html">Home</a>
+
+    <h2>Add Hotel</h2>
+
+    <form id="addHotelForm">
+      <input
+        type="text"
+        id="hotelAddress"
+        placeholder="Hotel Address"
+        required
+      />
+      <input
+        type="number"
+        id="hotelCategoryStars"
+        placeholder="Category Stars"
+        required
+      />
+      <input
+        type="number"
+        id="hotelNumberOfRooms"
+        placeholder="Number of Rooms"
+        required
+      />
+      <input type="number" id="hotelChainId" placeholder="Chain ID" required />
+      <input
+        type="number"
+        id="hotelManagerEmployeeId"
+        placeholder="Manager Employee ID"
+      />
+      <button type="submit">Add Hotel</button>
+    </form>
+
+    <h2>Hotels</h2>
+
+    <button id="loadHotelsBtn">Load Hotels</button>
+
+    <div id="hotelTable"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

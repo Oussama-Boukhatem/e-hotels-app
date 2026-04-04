@@ -182,6 +182,8 @@ CREATE TABLE Renting (
     RoomID INT NOT NULL,
     CheckInEmployeeID INT NOT NULL,
     BookingID INT UNIQUE,
+    PaymentAmount NUMERIC(10,2),
+    PaymentDate TIMESTAMP,
 
     CHECK (StartDate < EndDate),
     CHECK (CheckOutAt IS NULL OR CheckInAt IS NULL OR CheckInAt <= CheckOutAt),

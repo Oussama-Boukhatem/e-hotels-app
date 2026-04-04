@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Employees</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Employee Management</h1>
+
+    <a href="index.html">Home</a>
+
+    <h2>Add Employee</h2>
+
+    <form id="addEmployeeForm">
+      <input type="text" id="employeeName" placeholder="Full Name" required />
+      <input type="text" id="employeeAddress" placeholder="Address" required />
+      <input type="text" id="employeeSSN" placeholder="SSN/SIN" required />
+      <input
+        type="number"
+        id="employeeHotelId"
+        placeholder="Hotel ID"
+        required
+      />
+      <button type="submit">Add Employee</button>
+    </form>
+
+    <h2>Employees</h2>
+
+    <button id="loadEmployeesBtn">Load Employees</button>
+
+    <div id="employeeTable"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
