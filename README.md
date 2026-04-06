@@ -33,15 +33,14 @@ The project was developed as part of a database systems course and demonstrates 
 ## Project Structure
 
 
-e-hotels-app
-│
-├── backend
+e-hotels-app/
+├── backend/
 │   ├── server.js
 │   ├── db.js
 │   ├── package.json
 │   └── .env
 │
-├── frontend
+├── frontend/
 │   ├── index.html
 │   ├── rooms.html
 │   ├── renting.html
@@ -53,7 +52,7 @@ e-hotels-app
 │   ├── app.js
 │   └── style.css
 │
-├── database
+├── database/
 │   ├── schema.sql
 │   ├── seed.sql
 │   ├── queries.sql
