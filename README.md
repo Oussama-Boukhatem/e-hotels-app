@@ -36,29 +36,29 @@ The project was developed as part of a database systems course and demonstrates 
 e-hotels-app
 │
 ├── backend
-│ ├── server.js
-│ ├── db.js
-│ ├── package.json
-│ └── .env
+│   ├── server.js
+│   ├── db.js
+│   ├── package.json
+│   └── .env
 │
 ├── frontend
-│ ├── index.html
-│ ├── rooms.html
-│ ├── renting.html
-│ ├── customers.html
-│ ├── employees.html
-│ ├── hotels.html
-│ ├── rooms-management.html
-│ ├── views.html
-│ ├── app.js
-│ └── style.css
+│   ├── index.html
+│   ├── rooms.html
+│   ├── renting.html
+│   ├── customers.html
+│   ├── employees.html
+│   ├── hotels.html
+│   ├── rooms-management.html
+│   ├── views.html
+│   ├── app.js
+│   └── style.css
 │
 ├── database
-│ ├── schema.sql
-│ ├── seed.sql
-│ ├── queries.sql
-│ ├── triggers.sql
-│ └── views.sql
+│   ├── schema.sql
+│   ├── seed.sql
+│   ├── queries.sql
+│   ├── triggers.sql
+│   └── views.sql
 │
 └── README.md
 
@@ -101,10 +101,15 @@ Create a `.env` file inside the `backend` folder:
 
 
 DB_HOST=localhost
+
 DB_PORT=5432
+
 DB_NAME=ehotels
+
 DB_USER=your_postgres_user
+
 DB_PASSWORD=your_postgres_password
+
 PORT=3000
 
 
@@ -193,9 +198,3 @@ Triggers enforce business rules including:
 - The application interface allows users to interact with the database without writing SQL queries.
 - Payment history is not archived, in accordance with the project requirements.
 - All database constraints ensure referential integrity and valid attribute values.
-
----
-
-## Authors
-
-Project developed for a **Database Systems course**.
