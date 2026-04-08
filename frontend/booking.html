@@ -2,31 +2,64 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Create Booking</title>
+    <title>Create Booking - e-Hotels</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Create Booking</h1>
-    <a href="index.html">Back</a>
-
-    <form id="bookingForm">
-      <label>Start Date:</label>
-      <input type="date" id="bookingStartDate" required />
-
-      <label>End Date:</label>
-      <input type="date" id="bookingEndDate" required />
-
-      <label>Customer ID:</label>
-      <input type="number" id="customerId" required />
-
-      <label>Room ID:</label>
-      <input type="number" id="roomId" required />
-
-      <button type="submit">Create Booking</button>
-    </form>
-
-    <div id="bookingResult"></div>
-
+    <div class="app-layout">
+      <aside class="app-sidebar">
+        <div class="sidebar-brand"><h2>e-Hotels</h2></div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-link">Dashboard</a>
+          <a href="rooms.html" class="nav-link active">Search Rooms</a>
+          <a href="renting.html" class="nav-link">Rentings & Payments</a>
+          <a href="customers.html" class="nav-link">Customers</a>
+          <a href="employees.html" class="nav-link">Employees</a>
+          <a href="hotels.html" class="nav-link">Hotels</a>
+          <a href="rooms-management.html" class="nav-link">Rooms Management</a>
+          <a href="views.html" class="nav-link">SQL Views</a>
+        </nav>
+      </aside>
+      <main class="app-main">
+        <div class="main-content">
+          <header class="page-header">
+            <h1>Direct Booking Tool</h1>
+            <p>Standalone API form utility</p>
+          </header>
+          <div class="grid-layout">
+            <div class="panel">
+              <div class="panel-header"><h2>Create Booking</h2></div>
+              <div class="panel-body">
+                <form id="bookingForm">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Start Date:</label
+                      ><input type="date" id="bookingStartDate" required />
+                    </div>
+                    <div class="form-group">
+                      <label>End Date:</label
+                      ><input type="date" id="bookingEndDate" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Customer ID:</label
+                    ><input type="number" id="customerId" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Room ID:</label
+                    ><input type="number" id="roomId" required />
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-4">
+                    Create Booking
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div id="bookingResult"></div>
+          </div>
+        </div>
+      </main>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>

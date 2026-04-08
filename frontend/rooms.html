@@ -1,53 +1,103 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Search Rooms</title>
+    <meta charset="UTF-8" />
+    <title>Search Rooms - e-Hotels</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <h1>Search Available Rooms</h1>
-
-    <a href="index.html">Home</a>
-
-    <form id="roomSearchForm">
-      <label>Start Date</label>
-      <input type="date" id="startDate" required />
-
-      <label>End Date</label>
-      <input type="date" id="endDate" required />
-
-      <label>Capacity</label>
-      <select id="capacity">
-        <option value="">Any</option>
-        <option value="Single">Single</option>
-        <option value="Double">Double</option>
-        <option value="Triple">Triple</option>
-        <option value="Suite">Suite</option>
-      </select>
-
-      <label>Area</label>
-      <input type="text" id="area" />
-
-      <label>Hotel Chain ID</label>
-      <input type="number" id="chainId" />
-
-      <label>Hotel Category Stars</label>
-      <input type="number" id="categoryStars" />
-
-      <label>Minimum Rooms In Hotel</label>
-      <input type="number" id="minRooms" />
-
-      <label>Maximum Room Price</label>
-      <input type="number" id="maxPrice" />
-
-      <button type="submit">Search Rooms</button>
-    </form>
-
-    <h2>Results</h2>
-
-    <div id="roomResults"></div>
-
+    <div class="app-layout">
+      <aside class="app-sidebar">
+        <div class="sidebar-brand"><h2>e-Hotels</h2></div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-link">Dashboard</a>
+          <a href="rooms.html" class="nav-link active">Search Rooms</a>
+          <a href="renting.html" class="nav-link">Rentings & Payments</a>
+          <a href="customers.html" class="nav-link">Customers</a>
+          <a href="employees.html" class="nav-link">Employees</a>
+          <a href="hotels.html" class="nav-link">Hotels</a>
+          <a href="rooms-management.html" class="nav-link">Rooms Management</a>
+          <a href="views.html" class="nav-link">SQL Views</a>
+        </nav>
+      </aside>
+      <main class="app-main">
+        <div class="main-content">
+          <header class="page-header">
+            <h1>Search Available Rooms</h1>
+            <p>Find available rooms using multiple filters dynamically</p>
+          </header>
+          <div class="grid-layout">
+            <div class="panel">
+              <div class="panel-header"><h2>Filters</h2></div>
+              <div class="panel-body">
+                <form id="roomSearchForm">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Start Date</label
+                      ><input type="date" id="startDate" required />
+                    </div>
+                    <div class="form-group">
+                      <label>End Date</label
+                      ><input type="date" id="endDate" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Capacity</label>
+                    <select id="capacity">
+                      <option value="">Any</option>
+                      <option value="Single">Single</option>
+                      <option value="Double">Double</option>
+                      <option value="Triple">Triple</option>
+                      <option value="Suite">Suite</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Area / Location</label
+                    ><input type="text" id="area" placeholder="e.g. Toronto" />
+                  </div>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Chain ID</label
+                      ><input type="number" id="chainId" />
+                    </div>
+                    <div class="form-group">
+                      <label>Category Stars</label
+                      ><input
+                        type="number"
+                        id="categoryStars"
+                        min="1"
+                        max="5"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Min Hotel Rooms</label
+                      ><input type="number" id="minRooms" />
+                    </div>
+                    <div class="form-group">
+                      <label>Max Price</label
+                      ><input type="number" id="maxPrice" />
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block mt-4">
+                    Search Rooms
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><h2>Search Results</h2></div>
+              <div class="panel-body table-container" id="roomResults">
+                <div class="empty-state">
+                  Select dates and search to see available rooms.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>

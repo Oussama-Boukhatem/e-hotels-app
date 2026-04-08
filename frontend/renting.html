@@ -1,60 +1,127 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Employee Renting</title>
+    <meta charset="UTF-8" />
+    <title>Rentings - e-Hotels</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Employee Renting Page</h1>
-
-    <a href="index.html">Home</a>
-
-    <h2>Convert Booking to Renting</h2>
-
-    <button id="loadBookingsBtn">Load Bookings</button>
-    <div id="bookingList"></div>
-
-    <form id="convertBookingForm">
-      <label>Booking ID</label>
-      <input type="number" id="convertBookingId" required />
-
-      <label>Employee ID</label>
-      <input type="number" id="convertEmployeeId" required />
-
-      <label>Payment Amount</label>
-      <input type="number" id="convertPaymentAmount" step="0.01" />
-
-      <button type="submit">Convert to Renting</button>
-    </form>
-
-    <hr />
-
-    <h2>Direct Renting</h2>
-
-    <form id="directRentingForm">
-      <label>Start Date</label>
-      <input type="date" id="directStartDate" required />
-
-      <label>End Date</label>
-      <input type="date" id="directEndDate" required />
-
-      <label>Customer ID</label>
-      <input type="number" id="directCustomerId" required />
-
-      <label>Room ID</label>
-      <input type="number" id="directRoomId" required />
-
-      <label>Employee ID</label>
-      <input type="number" id="directEmployeeId" required />
-
-      <label>Payment Amount</label>
-      <input type="number" id="directPaymentAmount" step="0.01" />
-
-      <button type="submit">Create Direct Renting</button>
-    </form>
-
-    <div id="rentingResult"></div>
-
+    <div class="app-layout">
+      <aside class="app-sidebar">
+        <div class="sidebar-brand"><h2>e-Hotels</h2></div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-link">Dashboard</a>
+          <a href="rooms.html" class="nav-link">Search Rooms</a>
+          <a href="renting.html" class="nav-link active">Rentings & Payments</a>
+          <a href="customers.html" class="nav-link">Customers</a>
+          <a href="employees.html" class="nav-link">Employees</a>
+          <a href="hotels.html" class="nav-link">Hotels</a>
+          <a href="rooms-management.html" class="nav-link">Rooms Management</a>
+          <a href="views.html" class="nav-link">SQL Views</a>
+        </nav>
+      </aside>
+      <main class="app-main">
+        <div class="main-content">
+          <header class="page-header">
+            <h1>Rentings & Payments</h1>
+            <p>Process conversions and register direct customer check-ins.</p>
+          </header>
+          <div class="grid-layout-1-1">
+            <div class="panel">
+              <div class="panel-header">
+                <h2>Convert Booking to Renting</h2>
+              </div>
+              <div class="panel-body">
+                <form id="convertBookingForm">
+                  <div class="form-group">
+                    <label>Booking ID</label
+                    ><input type="number" id="convertBookingId" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Employee ID (Clerk)</label
+                    ><input type="number" id="convertEmployeeId" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Payment Amount (Optional)</label
+                    ><input
+                      type="number"
+                      id="convertPaymentAmount"
+                      step="0.01"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-4">
+                    Convert to Renting
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-header"><h2>Create Direct Renting</h2></div>
+              <div class="panel-body">
+                <form id="directRentingForm">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Start Date</label
+                      ><input type="date" id="directStartDate" required />
+                    </div>
+                    <div class="form-group">
+                      <label>End Date</label
+                      ><input type="date" id="directEndDate" required />
+                    </div>
+                  </div>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Customer ID</label
+                      ><input type="number" id="directCustomerId" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Room ID</label
+                      ><input type="number" id="directRoomId" required />
+                    </div>
+                  </div>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Employee ID</label
+                      ><input type="number" id="directEmployeeId" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Payment Amount</label
+                      ><input
+                        type="number"
+                        id="directPaymentAmount"
+                        step="0.01"
+                      />
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-4">
+                    Create Direct Renting
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="panel mt-4">
+            <div class="panel-header"><h2>Operation Result</h2></div>
+            <div class="panel-body" id="rentingResult">
+              <div class="empty-state">No transaction performed yet.</div>
+            </div>
+          </div>
+          <div class="panel mt-4">
+            <div class="panel-header flex-between">
+              <h2>System Bookings</h2>
+              <button id="loadBookingsBtn" class="btn btn-secondary">
+                See All Bookings
+              </button>
+            </div>
+            <div class="panel-body table-container" id="bookingList">
+              <div class="empty-state">
+                Click "See All Bookings" to view current bookings.
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>

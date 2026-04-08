@@ -1,3 +1,65 @@
+// --- UI Utility Functions ---
+function showToast(message, type = "info") {
+  let container = document.getElementById("toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toast-container";
+    document.body.appendChild(container);
+  }
+  const toast = document.createElement("div");
+  toast.className = `toast toast-${type}`;
+  toast.textContent = message;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+function customPrompt(titleMsg, subMsg) {
+  return new Promise((resolve) => {
+    const overlay = document.createElement("div");
+    overlay.className = "modal-overlay";
+    const modal = document.createElement("div");
+    modal.className = "modal-content";
+    const title = document.createElement("h3");
+    title.textContent = titleMsg;
+    const subtitle = document.createElement("p");
+    subtitle.textContent = subMsg;
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "form-control";
+    input.style.width = "100%";
+    input.placeholder = "e.g., 1001";
+    const actions = document.createElement("div");
+    actions.className = "modal-actions";
+    const btnCancel = document.createElement("button");
+    btnCancel.textContent = "Cancel";
+    btnCancel.className = "btn btn-secondary";
+    btnCancel.onclick = () => {
+      document.body.removeChild(overlay);
+      resolve(null);
+    };
+    const btnSubmit = document.createElement("button");
+    btnSubmit.textContent = "Confirm";
+    btnSubmit.className = "btn btn-primary";
+    btnSubmit.onclick = () => {
+      document.body.removeChild(overlay);
+      resolve(input.value);
+    };
+    actions.appendChild(btnCancel);
+    actions.appendChild(btnSubmit);
+    modal.appendChild(title);
+    modal.appendChild(subtitle);
+    modal.appendChild(input);
+    modal.appendChild(actions);
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    input.focus();
+  });
+}
+// ----------------------------
+
 const API_BASE = "http://localhost:3000";
 
 const roomSearchForm = document.getElementById("roomSearchForm");
@@ -312,8 +374,10 @@ async function bookRoom(roomId) {
   const startDate = document.getElementById("startDate").value;
   const endDate = document.getElementById("endDate").value;
 
-  const customerId = prompt("Enter your Customer ID");
-
+  const customerId = await customPrompt(
+    "Confirm Booking",
+    "Please enter your Customer ID to proceed:",
+  );
   if (!customerId) return;
 
   const response = await fetch("/bookings", {
@@ -333,9 +397,9 @@ async function bookRoom(roomId) {
   const data = await response.json();
 
   if (data.success) {
-    alert("Booking created successfully");
+    showToast("Booking created successfully", "success");
   } else {
-    alert(data.error);
+    showToast(data.error, "error");
   }
 }
 
@@ -399,16 +463,16 @@ if (addCustomerForm) {
 
     const data = await res.json();
 
-    alert(JSON.stringify(data));
+    if (data.success) showToast("Customer added successfully", "success");
+    else showToast(data.error || "Failed to add customer", "error");
   });
 }
 
 async function deleteCustomer(id) {
-  await fetch(`/customers/${id}`, {
-    method: "DELETE",
-  });
-
-  alert("Customer deleted");
+  const res = await fetch(`/customers/${id}`, { method: "DELETE" });
+  const data = await res.json();
+  if (data.success) showToast("Customer deleted successfully", "success");
+  else showToast("Failed to delete", "error");
 }
 
 const loadEmployeesBtn = document.getElementById("loadEmployeesBtn");
@@ -473,16 +537,16 @@ if (addEmployeeForm) {
     });
 
     const data = await res.json();
-    alert(JSON.stringify(data));
+    if (data.success) showToast("Employee added successfully", "success");
+    else showToast(data.error || "Failed to add employee", "error");
   });
 }
 
 async function deleteEmployee(id) {
-  await fetch(`/employees/${id}`, {
-    method: "DELETE",
-  });
-
-  alert("Employee deleted");
+  const res = await fetch(`/employees/${id}`, { method: "DELETE" });
+  const data = await res.json();
+  if (data.success) showToast("Employee deleted successfully", "success");
+  else showToast("Failed to delete", "error");
 }
 
 const loadHotelsBtn = document.getElementById("loadHotelsBtn");
@@ -558,16 +622,16 @@ if (addHotelForm) {
     });
 
     const data = await res.json();
-    alert(JSON.stringify(data));
+    if (data.success) showToast("Hotel added successfully", "success");
+    else showToast(data.error || "Failed to add hotel", "error");
   });
 }
 
 async function deleteHotel(id) {
-  await fetch(`/hotels/${id}`, {
-    method: "DELETE",
-  });
-
-  alert("Hotel deleted");
+  const res = await fetch(`/hotels/${id}`, { method: "DELETE" });
+  const data = await res.json();
+  if (data.success) showToast("Hotel deleted successfully", "success");
+  else showToast("Failed to delete", "error");
 }
 
 const loadRoomsBtn = document.getElementById("loadRoomsBtn");
@@ -639,14 +703,14 @@ if (addRoomForm) {
     });
 
     const data = await res.json();
-    alert(JSON.stringify(data));
+    if (data.success) showToast("Room added successfully", "success");
+    else showToast(data.error || "Failed to add room", "error");
   });
 }
 
 async function deleteRoom(id) {
-  await fetch(`/rooms/${id}`, {
-    method: "DELETE",
-  });
-
-  alert("Room deleted");
+  const res = await fetch(`/rooms/${id}`, { method: "DELETE" });
+  const data = await res.json();
+  if (data.success) showToast("Room deleted successfully", "success");
+  else showToast("Failed to delete", "error");
 }

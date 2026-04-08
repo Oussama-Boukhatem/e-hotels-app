@@ -1,59 +1,104 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Rooms</title>
+    <meta charset="UTF-8" />
+    <title>Rooms Management - e-Hotels</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Room Management</h1>
-
-    <a href="index.html">Home</a>
-
-    <h2>Add Room</h2>
-
-    <form id="addRoomForm">
-      <input
-        type="number"
-        id="roomPrice"
-        placeholder="Price"
-        step="0.01"
-        required
-      />
-
-      <select id="roomCapacity" required>
-        <option value="Single">Single</option>
-        <option value="Double">Double</option>
-        <option value="Triple">Triple</option>
-        <option value="Suite">Suite</option>
-      </select>
-
-      <select id="roomViewType" required>
-        <option value="Sea">Sea</option>
-        <option value="Mountain">Mountain</option>
-        <option value="None">None</option>
-      </select>
-
-      <select id="roomExtendable" required>
-        <option value="true">Extendable</option>
-        <option value="false">Not Extendable</option>
-      </select>
-
-      <input
-        type="text"
-        id="roomProblemDamageNotes"
-        placeholder="Problem/Damage Notes"
-      />
-      <input type="number" id="roomHotelId" placeholder="Hotel ID" required />
-
-      <button type="submit">Add Room</button>
-    </form>
-
-    <h2>Rooms</h2>
-
-    <button id="loadRoomsBtn">Load Rooms</button>
-
-    <div id="roomManagementTable"></div>
-
+    <div class="app-layout">
+      <aside class="app-sidebar">
+        <div class="sidebar-brand"><h2>e-Hotels</h2></div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-link">Dashboard</a>
+          <a href="rooms.html" class="nav-link">Search Rooms</a>
+          <a href="renting.html" class="nav-link">Rentings & Payments</a>
+          <a href="customers.html" class="nav-link">Customers</a>
+          <a href="employees.html" class="nav-link">Employees</a>
+          <a href="hotels.html" class="nav-link">Hotels</a>
+          <a href="rooms-management.html" class="nav-link active"
+            >Rooms Management</a
+          >
+          <a href="views.html" class="nav-link">SQL Views</a>
+        </nav>
+      </aside>
+      <main class="app-main">
+        <div class="main-content">
+          <header class="page-header">
+            <h1>Rooms Management</h1>
+            <p>Add and maintain property rooms</p>
+          </header>
+          <div class="grid-layout">
+            <div class="panel">
+              <div class="panel-header"><h2>Add Room</h2></div>
+              <div class="panel-body">
+                <form id="addRoomForm">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Price</label
+                      ><input
+                        type="number"
+                        id="roomPrice"
+                        step="0.01"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Hotel ID</label
+                      ><input type="number" id="roomHotelId" required />
+                    </div>
+                  </div>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label>Capacity</label
+                      ><select id="roomCapacity" required>
+                        <option value="Single">Single</option>
+                        <option value="Double">Double</option>
+                        <option value="Triple">Triple</option>
+                        <option value="Suite">Suite</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>View Type</label
+                      ><select id="roomViewType" required>
+                        <option value="Sea">Sea</option>
+                        <option value="Mountain">Mountain</option>
+                        <option value="None">None</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Extendable</label
+                    ><select id="roomExtendable" required>
+                      <option value="true">Extendable</option>
+                      <option value="false">Not Extendable</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Problem/Damage Notes</label
+                    ><input type="text" id="roomProblemDamageNotes" />
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block mt-4">
+                    Add Room
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-header flex-between">
+                <h2>Rooms List</h2>
+                <button id="loadRoomsBtn" class="btn btn-secondary">
+                  See All
+                </button>
+              </div>
+              <div class="panel-body table-container" id="roomManagementTable">
+                <div class="empty-state">Click "See All" to load rooms.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>

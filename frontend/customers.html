@@ -1,45 +1,95 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Customers</title>
+    <meta charset="UTF-8" />
+    <title>Customers - e-Hotels</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <h1>Customer Management</h1>
-
-    <a href="index.html">Home</a>
-
-    <h2>Add Customer</h2>
-
-    <form id="addCustomerForm">
-      <input type="text" id="customerName" placeholder="Full Name" required />
-
-      <input type="text" id="customerAddress" placeholder="Address" required />
-
-      <select id="customerIdType">
-        <option value="SIN">SIN</option>
-        <option value="Passport">Passport</option>
-        <option value="DrivingLicence">DrivingLicence</option>
-        <option value="SSN">SSN</option>
-      </select>
-
-      <input
-        type="text"
-        id="customerIdNumber"
-        placeholder="ID Number"
-        required
-      />
-
-      <button type="submit">Add Customer</button>
-    </form>
-
-    <h2>Customers</h2>
-
-    <button id="loadCustomersBtn">Load Customers</button>
-
-    <div id="customerTable"></div>
-
+    <div class="app-layout">
+      <aside class="app-sidebar">
+        <div class="sidebar-brand"><h2>e-Hotels</h2></div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-link">Dashboard</a>
+          <a href="rooms.html" class="nav-link">Search Rooms</a>
+          <a href="renting.html" class="nav-link">Rentings & Payments</a>
+          <a href="customers.html" class="nav-link active">Customers</a>
+          <a href="employees.html" class="nav-link">Employees</a>
+          <a href="hotels.html" class="nav-link">Hotels</a>
+          <a href="rooms-management.html" class="nav-link">Rooms Management</a>
+          <a href="views.html" class="nav-link">SQL Views</a>
+        </nav>
+      </aside>
+      <main class="app-main">
+        <div class="main-content">
+          <header class="page-header">
+            <h1>Customer Management</h1>
+            <p>Add and manage customer records in the system</p>
+          </header>
+          <div class="grid-layout">
+            <div class="panel">
+              <div class="panel-header"><h2>Add Customer</h2></div>
+              <div class="panel-body">
+                <form id="addCustomerForm">
+                  <div class="form-group">
+                    <label>Full Name</label
+                    ><input
+                      type="text"
+                      id="customerName"
+                      placeholder="e.g. John Doe"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Address</label
+                    ><input
+                      type="text"
+                      id="customerAddress"
+                      placeholder="e.g. 123 Main St"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>ID Type</label>
+                    <select id="customerIdType">
+                      <option value="SIN">SIN</option>
+                      <option value="Passport">Passport</option>
+                      <option value="DrivingLicence">Driving Licence</option>
+                      <option value="SSN">SSN</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>ID Number</label
+                    ><input
+                      type="text"
+                      id="customerIdNumber"
+                      placeholder="ID Number"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block mt-4">
+                    Add Customer
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-header flex-between">
+                <h2>Customers List</h2>
+                <button id="loadCustomersBtn" class="btn btn-secondary">
+                  See All
+                </button>
+              </div>
+              <div class="panel-body table-container" id="customerTable">
+                <div class="empty-state">
+                  Click "See All" to load customers.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>

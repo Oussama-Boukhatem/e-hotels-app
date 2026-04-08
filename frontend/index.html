@@ -1,23 +1,74 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>e-Hotels</title>
+    <meta charset="UTF-8" />
+    <title>Dashboard - e-Hotels</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>e-Hotels Management System</h1>
-      <p class="subtitle">Choose a section below</p>
+    <div class="app-layout">
+      <aside class="app-sidebar">
+        <div class="sidebar-brand">
+          <h2>e-Hotels</h2>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-link active">Dashboard</a>
+          <a href="rooms.html" class="nav-link">Search Rooms</a>
+          <a href="renting.html" class="nav-link">Rentings & Payments</a>
+          <a href="customers.html" class="nav-link">Customers</a>
+          <a href="employees.html" class="nav-link">Employees</a>
+          <a href="hotels.html" class="nav-link">Hotels</a>
+          <a href="rooms-management.html" class="nav-link">Rooms Management</a>
+          <a href="views.html" class="nav-link">SQL Views</a>
+        </nav>
+      </aside>
+      <main class="app-main">
+        <div class="main-content">
+          <header class="page-header">
+            <h1>Dashboard</h1>
+            <p>Welcome to the e-Hotels Management System</p>
+          </header>
 
-      <div class="nav-grid">
-        <a class="nav-card" href="rooms.html">Search Rooms / Book</a>
-        <a class="nav-card" href="renting.html">Employee Renting / Payments</a>
-        <a class="nav-card" href="customers.html">Customers</a>
-        <a class="nav-card" href="employees.html">Employees</a>
-        <a class="nav-card" href="hotels.html">Hotels</a>
-        <a class="nav-card" href="rooms-management.html">Rooms</a>
-        <a class="nav-card" href="views.html">SQL Views</a>
-      </div>
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <h3>Active Bookings</h3>
+              <div class="kpi-value">24</div>
+            </div>
+            <div class="kpi-card">
+              <h3>Rooms Rented</h3>
+              <div class="kpi-value">12</div>
+            </div>
+            <div class="kpi-card">
+              <h3>Registered Users</h3>
+              <div class="kpi-value">148</div>
+            </div>
+            <div class="kpi-card">
+              <h3>Total Hotels</h3>
+              <div class="kpi-value">8</div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header"><h2>Quick Actions</h2></div>
+            <div class="panel-body">
+              <div class="quick-actions-grid">
+                <a href="rooms.html" class="action-card">
+                  <h4>Search & Book Rooms</h4>
+                  <p>Find available rooms and create new customer bookings.</p>
+                </a>
+                <a href="renting.html" class="action-card">
+                  <h4>Manage Rentings</h4>
+                  <p>Process customer check-ins and payments directly.</p>
+                </a>
+                <a href="customers.html" class="action-card">
+                  <h4>Customer Records</h4>
+                  <p>Register new customers or edit existing information.</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   </body>
 </html>

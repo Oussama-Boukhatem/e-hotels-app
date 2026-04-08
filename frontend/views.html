@@ -1,24 +1,56 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Views</title>
+    <meta charset="UTF-8" />
+    <title>SQL Views - e-Hotels</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Database Views</h1>
-
-    <a href="index.html">Home</a>
-
-    <h2>Available Rooms Per Area</h2>
-    <button id="loadAvailableRooms">Load View</button>
-    <div id="availableRoomsView"></div>
-
-    <hr />
-
-    <h2>Hotel Aggregated Capacity</h2>
-    <button id="loadHotelCapacity">Load View</button>
-    <div id="hotelCapacityView"></div>
-
+    <div class="app-layout">
+      <aside class="app-sidebar">
+        <div class="sidebar-brand"><h2>e-Hotels</h2></div>
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-link">Dashboard</a>
+          <a href="rooms.html" class="nav-link">Search Rooms</a>
+          <a href="renting.html" class="nav-link">Rentings & Payments</a>
+          <a href="customers.html" class="nav-link">Customers</a>
+          <a href="employees.html" class="nav-link">Employees</a>
+          <a href="hotels.html" class="nav-link">Hotels</a>
+          <a href="rooms-management.html" class="nav-link">Rooms Management</a>
+          <a href="views.html" class="nav-link active">SQL Views</a>
+        </nav>
+      </aside>
+      <main class="app-main">
+        <div class="main-content">
+          <header class="page-header">
+            <h1>Database Views</h1>
+            <p>Complex aggregated reporting from the database</p>
+          </header>
+          <div class="panel">
+            <div class="panel-header flex-between">
+              <h2>Available Rooms Per Area</h2>
+              <button id="loadAvailableRooms" class="btn btn-secondary">
+                See View
+              </button>
+            </div>
+            <div class="panel-body table-container" id="availableRoomsView">
+              <div class="empty-state">Data hidden. Click "See View".</div>
+            </div>
+          </div>
+          <div class="panel mt-4">
+            <div class="panel-header flex-between">
+              <h2>Hotel Aggregated Capacity</h2>
+              <button id="loadHotelCapacity" class="btn btn-secondary">
+                See View
+              </button>
+            </div>
+            <div class="panel-body table-container" id="hotelCapacityView">
+              <div class="empty-state">Data hidden. Click "See View".</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>
